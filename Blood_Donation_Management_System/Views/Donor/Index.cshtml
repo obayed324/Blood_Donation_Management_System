@@ -1,0 +1,39 @@
+﻿@model List<Blood_Donation_Management_System.EF.Tables.Donor>
+
+<h2>Donor List</h2>
+<p>
+    <a href="/Donor/Create">Add New Donor</a> |
+    <a href="/Donation/Index">View Donations</a> |
+    <a href="/Reports/ByBloodGroup">Filter by Blood Group</a> |
+    <a href="/Reports/RecentDonors">Recent Donors</a> |
+    <a href="/Reports/DonationCounts">Donation Counts</a> |
+    <a href="/Reports/TotalVolume">Total Volume</a>
+</p>
+
+<table border="1" cellpadding="6">
+    <tr>
+        <th>Id</th>
+        <th>Full Name</th>
+        <th>Blood Group</th>
+        <th>Contact No</th>
+        <th>City</th>
+        <th>Last Donation Date</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var d in Model)
+    {
+        <tr>
+            <td>@d.DonorId</td>
+            <td>@d.FullName</td>
+            <td>@d.BloodGroup</td>
+            <td>@d.ContactNo</td>
+            <td>@d.City</td>
+            <td>@(d.LastDonationDate?.ToString("yyyy-MM-dd") ?? "N/A")</td>
+            <td>
+                <a href="/Donor/Details/@d.DonorId">Details</a> |
+                <a href="/Donor/Edit/@d.DonorId">Edit</a> |
+                <a href="/Donor/Delete/@d.DonorId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

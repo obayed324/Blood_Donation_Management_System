@@ -1,0 +1,12 @@
+﻿
+@model Blood_Donation_Management_System.EF.Tables.Donor
+
+<h2>Donor Details</h2>
+<p><b>Id:</b> @Model.DonorId</p>
+<p><b>Full Name:</b> @Model.FullName</p>
+<p><b>Blood Group:</b> @Model.BloodGroup</p>
+<p><b>Contact No:</b> @Model.ContactNo</p>
+<p><b>City:</b> @Model.City</p>
+<p><b>Last Donation Date:</b> @(Model.LastDonationDate?.ToString("yyyy-MM-dd") ?? "N/A")</p>
+
+<a href="/Donor/Index">Back to List</a>

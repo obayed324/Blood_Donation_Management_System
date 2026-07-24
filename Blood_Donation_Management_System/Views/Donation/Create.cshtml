@@ -1,0 +1,31 @@
+﻿@model Blood_Donation_Management_System.EF.Tables.Donation
+
+<h2>Add Donation</h2>
+@Html.ValidationSummary()
+
+<form method="post">
+    <p>
+        Donor:<br />
+        <select name="DonorId">
+            <option value="">-- Select Donor --</option>
+            @foreach (var donor in (List<Blood_Donation_Management_System.EF.Tables.Donor>)ViewBag.Donors)
+            {
+                <option value="@donor.DonorId">@donor.FullName (@donor.BloodGroup)</option>
+            }
+        </select>
+    </p>
+    <p>
+        Donation Date:<br />
+        <input type="date" name="DonationDate" />
+    </p>
+    <p>
+        Volume (ml):<br />
+        <input type="number" name="VolumeMl" placeholder="e.g. 350" />
+    </p>
+    <p>
+        Camp Name:<br />
+        <input type="text" name="CampName" placeholder="Camp Name" />
+    </p>
+    <input type="submit" value="Create" />
+</form>
+<a href="/Donation/Index">Back to List</a>

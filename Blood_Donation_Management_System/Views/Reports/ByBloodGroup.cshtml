@@ -1,0 +1,50 @@
+﻿@model List<Blood_Donation_Management_System.EF.Tables.Donor>
+
+<h2>Filter Donors by Blood Group</h2>
+
+<form method="get">
+    <select name="group">
+        <option value="">-- Select Blood Group --</option>
+        @foreach (var g in (List<string>)ViewBag.Groups)
+        {
+            if (g == ViewBag.Selected)
+            {
+                <option value="@g" selected="selected">@g</option>
+            }
+            else
+            {
+                <option value="@g">@g</option>
+            }
+        }
+    </select>
+    <input type="submit" value="Filter" />
+</form>
+
+<br />
+
+@if (Model.Any())
+{
+    <table border="1" cellpadding="6">
+        <tr>
+            <th>Full Name</th>
+            <th>Blood Group</th>
+            <th>Contact No</th>
+            <th>City</th>
+        </tr>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.FullName</td>
+                <td>@d.BloodGroup</td>
+                <td>@d.ContactNo</td>
+                <td>@d.City</td>
+            </tr>
+        }
+    </table>
+}
+else if (!string.IsNullOrEmpty((string)ViewBag.Selected))
+{
+    <p>No donors found for this blood group.</p>
+}
+
+<p><a href="/Donor/Index">Back to Donors</a></p>

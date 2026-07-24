@@ -1,0 +1,24 @@
+﻿@model List<Blood_Donation_Management_System.EF.Tables.Donation>
+
+<h2>Donation Records</h2>
+<p><a href="/Donation/Create">Add New Donation</a> | <a href="/Donor/Index">Back to Donors</a></p>
+
+<table border="1" cellpadding="6">
+    <tr>
+        <th>Id</th>
+        <th>Donor Name</th>
+        <th>Donation Date</th>
+        <th>Volume (ml)</th>
+        <th>Camp Name</th>
+    </tr>
+    @foreach (var d in Model)
+    {
+        <tr>
+            <td>@d.DonationId</td>
+            <td>@d.Donor.FullName</td>
+            <td>@d.DonationDate.ToString("yyyy-MM-dd")</td>
+            <td>@d.VolumeMl</td>
+            <td>@d.CampName</td>
+        </tr>
+    }
+</table>

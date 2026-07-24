@@ -1,0 +1,21 @@
+﻿@model List<Blood_Donation_Management_System.Models.DonorDonationCount>
+
+<h2>Total Donations per Donor</h2>
+
+<table border="1" cellpadding="6">
+    <tr>
+        <th>Full Name</th>
+        <th>Blood Group</th>
+        <th>Total Donations</th>
+    </tr>
+    @foreach (var d in Model)
+    {
+        <tr>
+            <td>@d.FullName</td>
+            <td>@d.BloodGroup</td>
+            <td>@d.TotalDonations</td>
+        </tr>
+    }
+</table>
+
+<p><a href="/Donor/Index">Back to Donors</a></p>

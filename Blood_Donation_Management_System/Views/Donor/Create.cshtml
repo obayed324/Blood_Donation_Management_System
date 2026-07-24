@@ -1,0 +1,29 @@
+﻿@model Blood_Donation_Management_System.EF.Tables.Donor
+
+<h2>Add Donor</h2>
+@Html.ValidationSummary()
+
+<form method="post">
+    <p>
+        Full Name:<br />
+        <input type="text" name="FullName" placeholder="Full Name" />
+    </p>
+    <p>
+        Blood Group:<br />
+        <input type="text" name="BloodGroup" placeholder="e.g. A+, O-" />
+    </p>
+    <p>
+        Contact No:<br />
+        <input type="text" name="ContactNo" placeholder="Contact Number" />
+    </p>
+    <p>
+        City:<br />
+        <input type="text" name="City" placeholder="City" />
+    </p>
+    <p>
+        Last Donation Date:<br />
+        <input type="date" name="LastDonationDate" />
+    </p>
+    <input type="submit" value="Create" />
+</form>
+<a href="/Donor/Index">Back to List</a>
