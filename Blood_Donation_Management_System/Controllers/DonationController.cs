@@ -3,7 +3,6 @@ using Blood_Donation_Management_System.EF.Tables;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace Blood_Donation_Management_System.Controllers
 {
     public class DonationController : Controller
@@ -13,6 +12,7 @@ namespace Blood_Donation_Management_System.Controllers
         public DonationController(BloodBankDbContext db)
         {
             this.db = db;
+
         }
 
         public IActionResult Index()
@@ -33,20 +33,22 @@ namespace Blood_Donation_Management_System.Controllers
         {
             if (!ModelState.IsValid)
             {
-                foreach (var item in ModelState)
-                {
-                    foreach (var error in item.Value.Errors)
-                    {
-                        Console.WriteLine($"{item.Key}: {error.ErrorMessage}");
-                    }
-                }
-
                 ViewBag.Donors = db.Donors.ToList();
                 return View(d);
             }
 
-            ViewBag.Donors = db.Donors.ToList();
-            return View(d);
+            db.Donations.Add(d);   // insert query
+            db.SaveChanges();      // executes the query
+
+            // keep Donor.LastDonationDate in sync with the newest donation
+            var donor = db.Donors.Find(d.DonorId);
+            if (donor != null)
+            {
+                donor.LastDonationDate = d.DonationDate;
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

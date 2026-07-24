@@ -3,7 +3,7 @@
 <h2>Filter Donors by Blood Group</h2>
 
 <form method="get">
-    <select name="group">
+    <select name="selectedGroup">
         <option value="">-- Select Blood Group --</option>
         @foreach (var g in (List<string>)ViewBag.Groups)
         {
